@@ -48,13 +48,13 @@ function switchView(viewName, withTransition = false) {
 
     curtain.classList.add('active');
 
-    // Duración de transición aumentada a 1.2 segundos para que se sienta el suspenso
+    // Duración de transición aumentada para leer el conjuro y mensaje terrorífico con calma (~2.2s)
     setTimeout(() => {
       executeViewSwitch(viewName);
       setTimeout(() => {
         curtain.classList.remove('active');
-      }, 600);
-    }, 1100);
+      }, 700);
+    }, 2100);
   } else {
     executeViewSwitch(viewName);
   }
@@ -159,7 +159,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const overlay = document.getElementById('spooky-intro-overlay');
 
-  // Mantenemos la pantalla oscura de inframundo durante 3.8 segundos para dar impacto
+  // Mantenemos la pantalla oscura de inframundo durante 6.2 segundos para poder leer bien todos los mensajes
   setTimeout(() => {
     if (overlay) {
       overlay.classList.add('fade-out');
@@ -174,7 +174,7 @@ window.addEventListener('DOMContentLoaded', () => {
         colors: ['#ea580c', '#b45309', '#dc2626']
       });
     }
-  }, 3800);
+  }, 6200);
 
   // Detectar hash
   const hash = window.location.hash.replace('#', '');
