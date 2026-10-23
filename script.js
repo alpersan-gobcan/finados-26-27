@@ -48,13 +48,13 @@ function switchView(viewName, withTransition = false) {
 
     curtain.classList.add('active');
 
-    // Duración de transición aumentada para leer el conjuro y mensaje terrorífico con calma (~2.2s)
+    // Duración de la transición igualada con la de inicio (~5.5 segundos para disfrutar de la ambientación)
     setTimeout(() => {
       executeViewSwitch(viewName);
       setTimeout(() => {
         curtain.classList.remove('active');
       }, 700);
-    }, 2100);
+    }, 5500);
   } else {
     executeViewSwitch(viewName);
   }
@@ -81,8 +81,8 @@ function executeViewSwitch(viewName) {
     views[viewName].classList.add('active-view');
   }
 
-  // Animación de confeti temático
-  triggerSpookyPoof(viewName);
+  // Animación terrorífica temática: lluvia de arañas, murciélagos y brujas
+  spawnSpookySwarm(viewName);
 
   // Scroll arriba
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -91,32 +91,44 @@ function executeViewSwitch(viewName) {
   history.replaceState(null, null, `#${viewName}`);
 }
 
-// 3. Efectos interactivos al pulsar botones de días
-function triggerSpookyPoof(day) {
-  if (typeof confetti === 'function') {
-    let colors = ['#dc2626', '#78350f', '#ea580c', '#000000'];
-    if (day === 'jueves') {
-      colors = ['#1d4ed8', '#3b82f6', '#ea580c', '#dc2626'];
-    } else if (day === 'viernes') {
-      colors = ['#ea580c', '#dc2626', '#78350f', '#15803d'];
-    }
+// 3. En lugar de confeti convencional: Lluvia / Enjambre de Arañas, Brujitas, Murciélagos y Calaveras
+function spawnSpookySwarm(day) {
+  const swarmSymbols = ['🕷️', '🦇', '🧙‍♀️', '💀', '🕸️', '👻'];
+  const count = 30;
 
-    confetti({
-      particleCount: 40,
-      spread: 75,
-      origin: { y: 0.25 },
-      colors: colors,
-      disableForReducedMotion: true
-    });
+  for (let i = 0; i < count; i++) {
+    const creature = document.createElement('div');
+    creature.className = 'falling-creature';
+    creature.innerText = swarmSymbols[Math.floor(Math.random() * swarmSymbols.length)];
+    
+    const startX = Math.random() * 95; // 0 - 95vw
+    const duration = 2.2 + Math.random() * 2.5; // seg
+    const delay = Math.random() * 0.8; // seg
+    const size = 1.3 + Math.random() * 1.5; // rem
+
+    creature.style.left = `${startX}vw`;
+    creature.style.top = '-50px';
+    creature.style.fontSize = `${size}rem`;
+    creature.style.animationDuration = `${duration}s`;
+    creature.style.animationDelay = `${delay}s`;
+
+    document.body.appendChild(creature);
+
+    // Auto-eliminar tras la caída
+    setTimeout(() => {
+      creature.remove();
+    }, (duration + delay + 0.5) * 1000);
   }
 }
 
-// 4. Filtro de búsqueda rápida en tiempo real para encontrar profesor o grupo
-function filterContent(day) {
-  const input = document.getElementById(`filter-${day}`);
-  if (!input) return;
+// 4. Filtro con Desplegables en tiempo real (Docente y Curso)
+function applyDropdownFilter(day) {
+  const selectDocente = document.getElementById(`select-docente-${day}`);
+  const selectCurso = document.getElementById(`select-curso-${day}`);
 
-  const query = input.value.trim().toLowerCase();
+  const docenteVal = selectDocente ? selectDocente.value.trim().toLowerCase() : '';
+  const cursoVal = selectCurso ? selectCurso.value.trim().toLowerCase() : '';
+
   const table = document.getElementById(`table-schedule-${day}`);
   if (!table) return;
 
@@ -124,20 +136,33 @@ function filterContent(day) {
 
   rows.forEach(row => {
     const rowText = row.innerText.toLowerCase();
-    const cards = row.querySelectorAll('.visit-card, .recreo-banner-card, .sub-item, .activity-card');
-    let hasMatch = false;
+    const cards = row.querySelectorAll('.visit-card, .recreo-banner-card');
 
+    let matchDocente = (docenteVal === '');
+    let matchCurso = (cursoVal === '');
+
+    // Comprobamos correspondencia
+    if (docenteVal !== '' && rowText.includes(docenteVal)) {
+      matchDocente = true;
+    }
+    if (cursoVal !== '' && rowText.includes(cursoVal)) {
+      matchCurso = true;
+    }
+
+    // Resaltar celdas específicas
     cards.forEach(card => {
       const cardText = card.innerText.toLowerCase();
-      if (query !== '' && cardText.includes(query)) {
+      const cardMatchDoc = (docenteVal !== '' && cardText.includes(docenteVal));
+      const cardMatchCur = (cursoVal !== '' && cardText.includes(cursoVal));
+
+      if ((docenteVal !== '' || cursoVal !== '') && (cardMatchDoc || cardMatchCur)) {
         card.classList.add('highlight-matched');
-        hasMatch = true;
       } else {
         card.classList.remove('highlight-matched');
       }
     });
 
-    if (query === '' || rowText.includes(query) || hasMatch) {
+    if (matchDocente && matchCurso) {
       row.style.display = '';
     } else {
       row.style.display = 'none';
@@ -145,12 +170,14 @@ function filterContent(day) {
   });
 }
 
-function clearFilter(day) {
-  const input = document.getElementById(`filter-${day}`);
-  if (input) {
-    input.value = '';
-    filterContent(day);
-  }
+function resetDropdownFilter(day) {
+  const selectDocente = document.getElementById(`select-docente-${day}`);
+  const selectCurso = document.getElementById(`select-curso-${day}`);
+
+  if (selectDocente) selectDocente.value = '';
+  if (selectCurso) selectCurso.value = '';
+
+  applyDropdownFilter(day);
 }
 
 // 5. Animación terrorífica inicial con mayor duración y tensión (4 segundos)
@@ -165,15 +192,8 @@ window.addEventListener('DOMContentLoaded', () => {
       overlay.classList.add('fade-out');
     }
 
-    // Efecto de bienvenida al descubrir la web
-    if (typeof confetti === 'function') {
-      confetti({
-        particleCount: 35,
-        spread: 65,
-        origin: { y: 0.2 },
-        colors: ['#ea580c', '#b45309', '#dc2626']
-      });
-    }
+    // Lluvia de arañas y murciélagos al descubrir la web
+    spawnSpookySwarm('home');
   }, 6200);
 
   // Detectar hash

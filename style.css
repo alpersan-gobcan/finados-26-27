@@ -1577,6 +1577,108 @@ body {
     border-bottom: 2px solid #eab308;
     padding: 0.85rem 1rem;
     font-size: 0.86rem;
+/* ==========================================================================
+   FILTROS CON DESPLEGABLES (DOCENTES Y CURSOS)
+   ========================================================================== */
+.dropdown-filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  background: var(--bg-main);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin-top: 1rem;
+}
+
+.dropdown-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1 1 240px;
+}
+
+.filter-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-strong);
+  background-color: #ffffff;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-select:focus, .filter-select:hover {
+  border-color: #ea580c;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15);
+}
+
+.clear-filter-btn {
+  background: #ffffff;
+  border: 1.5px solid var(--border-strong);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.clear-filter-btn:hover {
+  background: #fee2e2;
+  border-color: #f87171;
+  color: #b91c1c;
+}
+
+/* ==========================================================================
+   ANIMACIÓN: LLUVIA DE ARAÑAS, BRUJAS Y MURCIÉLAGOS
+   ========================================================================== */
+.falling-creature {
+  position: fixed;
+  z-index: 100000;
+  pointer-events: none;
+  user-select: none;
+  animation: fallDownSwarm linear forwards;
+}
+
+@keyframes fallDownSwarm {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.7);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.95;
+    transform: translateY(15vh) rotate(25deg) scale(1.1);
+  }
+  50% {
+    transform: translateY(50vh) rotate(-35deg) scale(0.9);
+  }
+  85% {
+    opacity: 0.9;
+    transform: translateY(85vh) rotate(45deg) scale(1.2);
+  }
+  100% {
+    transform: translateY(105vh) rotate(-15deg) scale(0.8);
+    opacity: 0;
   }
 }
+
 
