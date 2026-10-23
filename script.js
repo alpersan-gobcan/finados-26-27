@@ -48,15 +48,18 @@ function switchView(viewName, withTransition = false) {
 
     curtain.classList.add('active');
 
-    // Duración de la transición igualada con la de inicio (~5.5 segundos para disfrutar de la ambientación)
+    // Duración de la animación ajustada a exactamente 4 segundos
     setTimeout(() => {
       executeViewSwitch(viewName);
       setTimeout(() => {
         curtain.classList.remove('active');
-      }, 700);
-    }, 5500);
+        // Lanzar lluvia de criaturas justo al descubrirse la página
+        spawnSpookySwarm(viewName);
+      }, 500);
+    }, 4000);
   } else {
     executeViewSwitch(viewName);
+    spawnSpookySwarm(viewName);
   }
 }
 
@@ -81,9 +84,6 @@ function executeViewSwitch(viewName) {
     views[viewName].classList.add('active-view');
   }
 
-  // Animación terrorífica temática: lluvia de arañas, murciélagos y brujas
-  spawnSpookySwarm(viewName);
-
   // Scroll arriba
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -91,33 +91,33 @@ function executeViewSwitch(viewName) {
   history.replaceState(null, null, `#${viewName}`);
 }
 
-// 3. En lugar de confeti convencional: Lluvia / Enjambre de Arañas, Brujitas, Murciélagos y Calaveras
+// 3. Lluvia / Enjambre de Arañas, Brujitas, Murciélagos y Calaveras cayendo desde arriba
 function spawnSpookySwarm(day) {
   const swarmSymbols = ['🕷️', '🦇', '🧙‍♀️', '💀', '🕸️', '👻'];
-  const count = 30;
+  const count = 35;
 
   for (let i = 0; i < count; i++) {
     const creature = document.createElement('div');
     creature.className = 'falling-creature';
     creature.innerText = swarmSymbols[Math.floor(Math.random() * swarmSymbols.length)];
     
-    const startX = Math.random() * 95; // 0 - 95vw
-    const duration = 2.2 + Math.random() * 2.5; // seg
-    const delay = Math.random() * 0.8; // seg
-    const size = 1.3 + Math.random() * 1.5; // rem
+    const startX = Math.random() * 96; // 0 - 96vw
+    const duration = 2.4 + Math.random() * 2.2; // seg
+    const delay = Math.random() * 0.9; // seg
+    const size = 1.4 + Math.random() * 1.5; // rem
 
     creature.style.left = `${startX}vw`;
-    creature.style.top = '-50px';
+    creature.style.top = '-60px';
     creature.style.fontSize = `${size}rem`;
     creature.style.animationDuration = `${duration}s`;
     creature.style.animationDelay = `${delay}s`;
 
     document.body.appendChild(creature);
 
-    // Auto-eliminar tras la caída
+    // Auto-eliminar tras completar la caída
     setTimeout(() => {
       creature.remove();
-    }, (duration + delay + 0.5) * 1000);
+    }, (duration + delay + 0.6) * 1000);
   }
 }
 
@@ -186,7 +186,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   const overlay = document.getElementById('spooky-intro-overlay');
 
-  // Mantenemos la pantalla oscura de inframundo durante 6.2 segundos para poder leer bien todos los mensajes
+  // Mantenemos la pantalla oscura de inframundo durante 4 segundos exactos
   setTimeout(() => {
     if (overlay) {
       overlay.classList.add('fade-out');
@@ -194,7 +194,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Lluvia de arañas y murciélagos al descubrir la web
     spawnSpookySwarm('home');
-  }, 6200);
+  }, 4000);
 
   // Detectar hash
   const hash = window.location.hash.replace('#', '');

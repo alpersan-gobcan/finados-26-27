@@ -189,65 +189,67 @@
         <h2>Jornada de Talleres, Muestras y Franjas Horarias (1º ESO)</h2>
         <p class="section-intro">El alumnado de <strong>1º ESO rota por horas</strong> entre los tres espacios centrales con docentes acompañantes. Los talleres activos son impartidos por alumnado de 1º CFGB, Aula Enclave y 2º ESO.</p>
 
-        <!-- Filtro con Desplegables: Docentes y Cursos (Jueves) -->
-        <div class="dropdown-filter-container">
-          <div class="dropdown-filter-group">
-            <label for="select-docente-jueves" class="filter-label">👨‍🏫 Filtrar por Docente:</label>
-            <select id="select-docente-jueves" class="filter-select" onchange="applyDropdownFilter('jueves')">
-              <option value="">-- Todos los Docentes --</option>
-              <option value="ana mata">Ana Mata</option>
-              <option value="ana teresa">Ana Teresa</option>
-              <option value="ana válido">Ana Válido</option>
-              <option value="ángeles">Ángeles</option>
-              <option value="ciro">Ciro</option>
-              <option value="cristian">Cristian</option>
-              <option value="davinia">Davinia</option>
-              <option value="fernando">Fernando</option>
-              <option value="irene">Irene</option>
-              <option value="josé fran">José Fran</option>
-              <option value="juan bosco">Juan Bosco</option>
-              <option value="maría elena">María Elena</option>
-              <option value="marifé">Marifé</option>
-              <option value="mari pino">Mari Pino</option>
-              <option value="migue">Migue</option>
-              <option value="miguel ángel artiles">Miguel Ángel Artiles</option>
-              <option value="mónica díaz">Mónica Díaz</option>
-              <option value="monroy">Monroy</option>
-              <option value="raúl">Raúl</option>
-              <option value="rosalva">Rosalva</option>
-              <option value="sandra">Sandra</option>
-              <option value="sara">Sara</option>
-              <option value="saro">Saro</option>
-              <option value="sergio">Sergio</option>
-              <option value="silvia">Silvia</option>
-              <option value="sonia">Sonia</option>
-            </select>
+        <!-- Filtro Estilizado: Docentes y Cursos del Cuadrante (Jueves) -->
+        <div class="schedule-filter-card">
+          <div class="filter-card-header">
+            <span class="filter-header-icon">🔎</span>
+            <div>
+              <span class="filter-card-title">Filtro rápido del Cuadrante Horario</span>
+              <span class="filter-card-subtitle">Selecciona docente o grupo para localizarlo en la tabla</span>
+            </div>
           </div>
 
-          <div class="dropdown-filter-group">
-            <label for="select-curso-jueves" class="filter-label">🎓 Filtrar por Curso / Grupo:</label>
-            <select id="select-curso-jueves" class="filter-select" onchange="applyDropdownFilter('jueves')">
-              <option value="">-- Todos los Grupos --</option>
-              <option value="1º eso a">1º ESO A</option>
-              <option value="1º eso b">1º ESO B</option>
-              <option value="1º eso c">1º ESO C</option>
-              <option value="1º eso d">1º ESO D</option>
-              <option value="2º eso a">2º ESO A</option>
-              <option value="2º eso b">2º ESO B</option>
-              <option value="2º eso c">2º ESO C</option>
-              <option value="2º eso d">2º ESO D</option>
-              <option value="aula enclave">Aula Enclave</option>
-              <option value="1º cfgb">1º CFGB</option>
-              <option value="2º pdc">2º PDC</option>
-              <option value="4º monográfico">4º Monográfico</option>
-              <option value="4º expresión artística">4º Expresión Artística</option>
-              <option value="2º bach">2º Bachillerato</option>
-            </select>
-          </div>
+          <div class="filter-controls-row">
+            <div class="custom-select-wrapper">
+              <label for="select-docente-jueves" class="custom-select-label">
+                <span class="label-icon">👨‍🏫</span> Docente Acompañante
+              </label>
+              <div class="select-styled-box">
+                <select id="select-docente-jueves" class="styled-dropdown" onchange="applyDropdownFilter('jueves')">
+                  <option value="">-- Todos los Docentes (Jueves) --</option>
+                  <option value="marifé">Marifé (2ª h · 1º ESO A)</option>
+                  <option value="sara">Sara (2ª, 4ª y 5ª h)</option>
+                  <option value="ángeles">Ángeles (2ª y 3ª h)</option>
+                  <option value="ana teresa">Ana Teresa (2ª h · 1º ESO C)</option>
+                  <option value="saro">Saro (3ª h · 1º ESO A)</option>
+                  <option value="sonia">Sonia (3ª h / 6ª h Pócima)</option>
+                  <option value="juan bosco">Juan Bosco (4ª y 5ª h)</option>
+                  <option value="ciro">Ciro (4ª h · 1º ESO D)</option>
+                  <option value="ana válido">Ana Válido (5ª h · 1º ESO D)</option>
+                  <option value="miguel ángel artiles">Miguel Ángel Artiles (6ª h · 2º ESO A+C)</option>
+                  <option value="cristian">Cristian (6ª h · 2º ESO A+C)</option>
+                  <option value="silvia">Silvia (6ª h · 2º ESO B)</option>
+                  <option value="rosalva">Rosalva (6ª h · Trasera Talleres)</option>
+                  <option value="fernando">Fernando (6ª h · Trasera Talleres)</option>
+                  <option value="mari pino">Mari Pino (6ª h · Trasera Talleres)</option>
+                </select>
+                <span class="select-arrow">▼</span>
+              </div>
+            </div>
 
-          <button class="clear-filter-btn" type="button" onclick="resetDropdownFilter('jueves')">
-            ↺ Mostrar Todo
-          </button>
+            <div class="custom-select-wrapper">
+              <label for="select-curso-jueves" class="custom-select-label">
+                <span class="label-icon">🎓</span> Grupo que Acude
+              </label>
+              <div class="select-styled-box">
+                <select id="select-curso-jueves" class="styled-dropdown" onchange="applyDropdownFilter('jueves')">
+                  <option value="">-- Todos los Grupos (Jueves) --</option>
+                  <option value="1º eso a">1º ESO A</option>
+                  <option value="1º eso b">1º ESO B</option>
+                  <option value="1º eso c">1º ESO C</option>
+                  <option value="1º eso d">1º ESO D</option>
+                  <option value="2º eso a + c">2º ESO A + C (6ª Hora)</option>
+                  <option value="2º eso b">2º ESO B (6ª Hora)</option>
+                  <option value="trasera de talleres">Todo 1º ESO (6ª Hora Dinámica)</option>
+                </select>
+                <span class="select-arrow">▼</span>
+              </div>
+            </div>
+
+            <button class="reset-filter-action" type="button" onclick="resetDropdownFilter('jueves')">
+              <span class="btn-refresh-icon">↺</span> Mostrar Todo
+            </button>
+          </div>
         </div>
       </div>
 
@@ -678,52 +680,56 @@
         <h2>Jornada de Talleres (2º ESO), Gran Castañada del AMPA y Concurso</h2>
         <p class="section-intro">El <strong>viernes 30</strong> se concentra la visita de <strong>2º de ESO</strong> durante la 2ª y 3ª hora, seguido del <strong>gran evento del recreo</strong> organizado con el AMPA Los Tabaibales.</p>
 
-        <!-- Filtro con Desplegables: Docentes y Cursos (Viernes) -->
-        <div class="dropdown-filter-container">
-          <div class="dropdown-filter-group">
-            <label for="select-docente-viernes" class="filter-label">👨‍🏫 Filtrar por Docente:</label>
-            <select id="select-docente-viernes" class="filter-select" onchange="applyDropdownFilter('viernes')">
-              <option value="">-- Todos los Docentes --</option>
-              <option value="ana mata">Ana Mata</option>
-              <option value="ana válido">Ana Válido</option>
-              <option value="cristian">Cristian</option>
-              <option value="davinia">Davinia</option>
-              <option value="fernando">Fernando</option>
-              <option value="irene">Irene</option>
-              <option value="josé fran">José Fran</option>
-              <option value="maría elena">María Elena</option>
-              <option value="mónica díaz">Mónica Díaz</option>
-              <option value="monroy">Monroy</option>
-              <option value="paula">Paula</option>
-              <option value="raúl">Raúl</option>
-              <option value="sandra">Sandra</option>
-              <option value="sergio">Sergio</option>
-              <option value="silvia">Silvia</option>
-              <option value="ampa">AMPA Los Tabaibales</option>
-            </select>
+        <!-- Filtro Estilizado: Docentes y Cursos del Cuadrante (Viernes) -->
+        <div class="schedule-filter-card">
+          <div class="filter-card-header">
+            <span class="filter-header-icon">🔎</span>
+            <div>
+              <span class="filter-card-title">Filtro rápido del Cuadrante Horario (Viernes)</span>
+              <span class="filter-card-subtitle">Localiza rápidamente docentes acompañantes o grupos de 2º de ESO</span>
+            </div>
           </div>
 
-          <div class="dropdown-filter-group">
-            <label for="select-curso-viernes" class="filter-label">🎓 Filtrar por Curso / Grupo:</label>
-            <select id="select-curso-viernes" class="filter-select" onchange="applyDropdownFilter('viernes')">
-              <option value="">-- Todos los Grupos --</option>
-              <option value="2º eso a">2º ESO A</option>
-              <option value="2º eso b">2º ESO B</option>
-              <option value="2º eso c">2º ESO C</option>
-              <option value="2º eso d">2º ESO D</option>
-              <option value="1º eso">1º ESO (Talleres)</option>
-              <option value="1º cfgb">1º CFGB</option>
-              <option value="aula enclave">Aula Enclave</option>
-              <option value="2º pdc">2º PDC</option>
-              <option value="4º monográfico">4º Monográfico</option>
-              <option value="4º expresión artística">4º Expresión Artística</option>
-              <option value="recreo">Recreo / Todos</option>
-            </select>
-          </div>
+          <div class="filter-controls-row">
+            <div class="custom-select-wrapper">
+              <label for="select-docente-viernes" class="custom-select-label">
+                <span class="label-icon">👨‍🏫</span> Docente Acompañante
+              </label>
+              <div class="select-styled-box">
+                <select id="select-docente-viernes" class="styled-dropdown" onchange="applyDropdownFilter('viernes')">
+                  <option value="">-- Todos los Docentes (Viernes) --</option>
+                  <option value="silvia">Silvia (2ª h · 2º ESO B)</option>
+                  <option value="ana válido">Ana Válido (2ª h / 3ª h)</option>
+                  <option value="fernando">Fernando (3ª h · 2º ESO D)</option>
+                  <option value="sandra">Sandra (3ª h · 2º ESO A+C)</option>
+                  <option value="cristian">Cristian (3ª h · 2º ESO A+C)</option>
+                  <option value="paula">Paula (3ª h · 2º ESO A+C)</option>
+                  <option value="ampa">AMPA Los Tabaibales (Recreo)</option>
+                </select>
+                <span class="select-arrow">▼</span>
+              </div>
+            </div>
 
-          <button class="clear-filter-btn" type="button" onclick="resetDropdownFilter('viernes')">
-            ↺ Mostrar Todo
-          </button>
+            <div class="custom-select-wrapper">
+              <label for="select-curso-viernes" class="custom-select-label">
+                <span class="label-icon">🎓</span> Grupo que Acude
+              </label>
+              <div class="select-styled-box">
+                <select id="select-curso-viernes" class="styled-dropdown" onchange="applyDropdownFilter('viernes')">
+                  <option value="">-- Todos los Grupos (Viernes) --</option>
+                  <option value="2º eso b">2º ESO B (2ª Hora)</option>
+                  <option value="2º eso d">2º ESO D (2ª y 3ª Hora)</option>
+                  <option value="2º eso a + c">2º ESO A + C (3ª Hora)</option>
+                  <option value="recreo">Recreo (Todos los cursos & AMPA)</option>
+                </select>
+                <span class="select-arrow">▼</span>
+              </div>
+            </div>
+
+            <button class="reset-filter-action" type="button" onclick="resetDropdownFilter('viernes')">
+              <span class="btn-refresh-icon">↺</span> Mostrar Todo
+            </button>
+          </div>
         </div>
       </div>
 

@@ -1578,74 +1578,146 @@ body {
     padding: 0.85rem 1rem;
     font-size: 0.86rem;
 /* ==========================================================================
-   FILTROS CON DESPLEGABLES (DOCENTES Y CURSOS)
+   FILTROS CON DESPLEGABLES PREMIUM INTEGRADOS
    ========================================================================== */
-.dropdown-filter-container {
+.schedule-filter-card {
+  background: #ffffff;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.25rem;
+  box-shadow: 0 4px 16px rgba(120, 53, 15, 0.05);
+}
+
+.filter-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.filter-header-icon {
+  font-size: 1.35rem;
+}
+
+.filter-card-title {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #78350f;
+  letter-spacing: -0.01em;
+}
+
+.filter-card-subtitle {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.filter-controls-row {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  gap: 1rem;
-  background: var(--bg-main);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-md);
-  padding: 1rem 1.25rem;
-  margin-top: 1rem;
+  gap: 1.15rem;
 }
 
-.dropdown-filter-group {
+.custom-select-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  flex: 1 1 240px;
+  gap: 0.4rem;
+  flex: 1 1 280px;
 }
 
-.filter-label {
+.custom-select-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
   font-size: 0.82rem;
   font-weight: 800;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  letter-spacing: 0.3px;
 }
 
-.filter-select {
+.label-icon {
+  font-size: 1.05rem;
+}
+
+.select-styled-box {
+  position: relative;
+  display: flex;
+  align-items: center;
   width: 100%;
-  padding: 0.65rem 0.9rem;
+}
+
+.styled-dropdown {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fffaf0;
+  border: 1.5px solid #fed7aa;
   border-radius: var(--radius-sm);
-  border: 1.5px solid var(--border-strong);
-  background-color: #ffffff;
-  color: var(--text-primary);
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
   font-family: var(--font-body);
   font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  outline: none;
-  transition: all 0.2s ease;
-  box-shadow: var(--shadow-sm);
-}
-
-.filter-select:focus, .filter-select:hover {
-  border-color: #ea580c;
-  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15);
-}
-
-.clear-filter-btn {
-  background: #ffffff;
-  border: 1.5px solid var(--border-strong);
-  color: var(--text-muted);
-  font-family: var(--font-body);
   font-weight: 700;
+  color: #451a03;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.styled-dropdown:hover {
+  border-color: #ea580c;
+  background-color: #ffffff;
+}
+
+.styled-dropdown:focus {
+  outline: none;
+  border-color: #ea580c;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.18);
+}
+
+.select-arrow {
+  position: absolute;
+  right: 1rem;
+  font-size: 0.75rem;
+  color: #ea580c;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.reset-filter-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #475569;
+  font-family: var(--font-body);
+  font-weight: 800;
   font-size: 0.88rem;
-  padding: 0.65rem 1.2rem;
+  padding: 0.75rem 1.3rem;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
+  box-shadow: var(--shadow-sm);
 }
 
-.clear-filter-btn:hover {
-  background: #fee2e2;
-  border-color: #f87171;
-  color: #b91c1c;
+.reset-filter-action:hover {
+  background: #fff1f2;
+  border-color: #fca5a5;
+  color: #dc2626;
+  transform: translateY(-1px);
+}
+
+.btn-refresh-icon {
+  font-size: 1.1rem;
+  line-height: 1;
 }
 
 /* ==========================================================================
