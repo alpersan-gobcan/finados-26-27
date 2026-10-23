@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jornada Finados & Halloween 2026/27 | IES Santa Lucía</title>
+  <meta name="description" content="Cuadrante interactivo oficial de actividades, talleres, espacios y acompañamiento docente en el IES Santa Lucía.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <!-- PANTALLA INTRO / ANIMACIÓN TERRORÍFICA DE ENTRADA -->
+  <div id="spooky-intro-overlay" class="spooky-overlay">
+    <div class="intro-fog"></div>
+    <div class="intro-content">
+      <div class="intro-icon-ghost">👻</div>
+      <div class="intro-eye-glow">
+        <span class="eye left-eye"></span>
+        <span class="eye right-eye"></span>
+      </div>
+      <h2 class="intro-title">¿Te atreves a entrar en el Inframundo?</h2>
+      <p class="intro-sub">IES Santa Lucía · Finados & Halloween 26/27</p>
+      <div class="intro-cauldron">
+        <span class="bubble b1"></span>
+        <span class="bubble b2"></span>
+        <span class="bubble b3"></span>
+        <span class="cauldron-emoji">🧙‍♀️⚗️</span>
+      </div>
+      <span class="intro-hint">Abriendo las puertas del conocimiento...</span>
+    </div>
+  </div>
+
+  <!-- Cortina de transición entre días -->
+  <div id="transition-curtain" class="transition-curtain">
+    <div class="curtain-message">
+      <span class="curtain-icon">🎃</span>
+      <span id="curtain-text" class="curtain-text">Cambiando de dimensión...</span>
+    </div>
+  </div>
+
+  <!-- Elementos de ambiente flotantes (Canarias Finados + Halloween) -->
+  <div id="ambient-particles" aria-hidden="true"></div>
+
+  <!-- Contenedor Principal -->
+  <div class="app-container">
+
+    <!-- Header simplificado sin botones superiores -->
+    <header class="main-header">
+      <div class="header-inner">
+        <div class="brand-badge" onclick="switchView('home', true)" style="cursor: pointer;">
+          <img src="assets/logo-santa-lucia.jpg" alt="Logo IES Santa Lucía" class="school-logo">
+          <div class="brand-text">
+            <span class="sub-school">IES Santa Lucía · Curso 26/27</span>
+            <span class="canary-tag">🌰 Tradición de Finados & 🎃 Halloween</span>
+          </div>
+        </div>
+
+        <h1 class="main-title">
+          <span class="glow-text">Entre Brujas, Muertos</span>
+          <span class="subtitle-script">y los Secretos del Inframundo</span>
+        </h1>
+
+        <p class="tagline">Cuadrante interactivo oficial de actividades, talleres, espacios y acompañamiento docente.</p>
+      </div>
+    </header>
+
+    <!-- VISTA 1: PORTADA (CON TARJETAS COMO BOTONES PRINCIPALES) -->
+    <main id="view-home" class="view-section active-view">
+      <div class="hero-welcome">
+        <div class="spooky-card welcome-banner">
+          <div class="banner-badge">¡Bienvenidos a la celebración de Finados & Halloween!</div>
+          <h2>Selecciona el día para consultar el cuadrante de actividades</h2>
+          <p>Consulta a golpe de vista la organización horaria, qué grupos asisten a cada franja, docentes acompañantes y talleres.</p>
+        </div>
+
+        <!-- Tarjetas interactivas principales de acceso a cada día -->
+        <div class="days-grid-selector">
+          <!-- Tarjeta Jueves -->
+          <article class="day-hero-card jueves-card" onclick="switchView('jueves', true)">
+            <div class="card-glass-glow"></div>
+            <div class="card-top-tag">DÍA 1 · JORNADA COMPLETA</div>
+            <div class="card-icon-big">🧙‍♀️🌰</div>
+            <h3 class="card-day-title">Jueves 29 de Octubre</h3>
+            <p class="card-desc">Participación rotatoria de <strong>1º de ESO</strong> por espacios con docentes acompañantes, talleres impartidos por <strong>1º CFGB</strong>, <strong>Aula Enclave</strong> y <strong>2º ESO</strong>, y dinámicas de patio.</p>
+            
+            <div class="card-highlights">
+              <span class="pill">📚 Museo Vivo</span>
+              <span class="pill">🎭 Las Voces que llamaron Brujas</span>
+              <span class="pill">🔐 Escape Room Canario</span>
+              <span class="pill highlight-pill">🌰 6ª Hora: La Gran Castañada</span>
+            </div>
+
+            <div class="dresscode-chip">
+              <span class="chip-icon">🎩</span> <strong>Dress Code:</strong> Complementos de Halloween (diademas, sombreros, calcetines, maquillaje, collares terroríficos...).
+            </div>
+
+            <button class="action-cta-btn jueves-btn" type="button">
+              <span>Abrir Cuadrante del Jueves</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </article>
+
+          <!-- Tarjeta Viernes -->
+          <article class="day-hero-card viernes-card" onclick="switchView('viernes', true)">
+            <div class="card-glass-glow"></div>
+            <div class="card-top-tag">DÍA 2 · GRAN FIESTA ESCOLAR</div>
+            <div class="card-icon-big">🔥👻</div>
+            <h3 class="card-day-title">Viernes 30 de Octubre</h3>
+            <p class="card-desc">Rotaciones en franjas para <strong>2º de ESO</strong>, talleres continuados y en el recreo: <strong>¡Gran Asadero de Castañas del AMPA, música y Concurso de Disfraces!</strong></p>
+
+            <div class="card-highlights">
+              <span class="pill">⚗️ Ciencia del Terror</span>
+              <span class="pill">🕯️ Rincón de Leyendas</span>
+              <span class="pill">🍿 Cortometrajes & Casa del Terror</span>
+              <span class="pill highlight-pill">🎉 Recreo: Concurso Disfraces & Photocall</span>
+            </div>
+
+            <div class="dresscode-chip">
+              <span class="chip-icon">🎭</span> <strong>Dress Code:</strong> Disfraz completo de Halloween o tradicional canario de Finados.
+            </div>
+
+            <button class="action-cta-btn viernes-btn" type="button">
+              <span>Abrir Cuadrante del Viernes</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </article>
+        </div>
+
+        <!-- Banner de Dress Code de la Semana Canaria -->
+        <section class="dress-code-banner">
+          <h3>🧣 Semana Temática de Finados & Halloween · Calendario de Indumentaria</h3>
+          <div class="dress-steps">
+            <div class="dress-step">
+              <div class="step-day">Miércoles 28</div>
+              <div class="step-icon">🟤</div>
+              <div class="step-body">
+                <strong>Complemento de Finados:</strong> Ven con pañuelo canario, boina, chaleco, camisa de cuadros u otro accesorio tradicional.
+              </div>
+            </div>
+            <div class="dress-step">
+              <div class="step-day">Jueves 29</div>
+              <div class="step-icon">🧙‍♀️</div>
+              <div class="step-body">
+                <strong>Complementos de Halloween:</strong> Diademas, sombreros de bruja, calcetines temáticos, maquillaje, collares o accesorio terrorífico.
+              </div>
+            </div>
+            <div class="dress-step highlight-step">
+              <div class="step-day">Viernes 30</div>
+              <div class="step-icon">👻</div>
+              <div class="step-body">
+                <strong>Gran Día de Disfraz:</strong> Disfraz libre de Halloween o vestimenta tradicional canaria de Finados. ¡Participa en el concurso!
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- VISTA 2: JUEVES 29 DE OCTUBRE -->
+    <main id="view-jueves" class="view-section" style="display:none;">
+      <div class="day-view-header jueves-border">
+        <div class="day-info-bar">
+          <div class="day-badge-pill">JUEVES 29 DE OCTUBRE 2026</div>
+          <div class="nav-switch-actions">
+            <button class="switch-day-link" onclick="switchView('viernes', true)">Ir a Viernes 30 →</button>
+            <button class="back-link-btn" onclick="switchView('home', true)">🏠 Volver al inicio</button>
+          </div>
+        </div>
+        <h2>Jornada de Talleres, Muestras y Franjas Horarias (1º ESO)</h2>
+        <p class="section-intro">El alumnado de <strong>1º ESO rota por horas</strong> entre los tres espacios centrales con docentes acompañantes. Los talleres activos son impartidos por alumnado de 1º CFGB, Aula Enclave y 2º ESO.</p>
+
+        <!-- Filtro Rápido para encontrar tu grupo / profesor -->
+        <div class="search-filter-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="filter-jueves" class="filter-input" placeholder="Buscar grupo o profesor (ej. 1º ESO B, Marifé, Raúl, Gimnasio...)" onkeyup="filterContent('jueves')">
+          <button class="clear-search-btn" onclick="clearFilter('jueves')">Limpiar</button>
+        </div>
+      </div>
+
+      <!-- SECCIÓN A: CUADRANTE HORARIO DE ASISTENCIA Y GRUPOS -->
+      <section class="schedule-block">
+        <div class="block-title-bar blue-theme-bar">
+          <div class="title-with-icon">
+            <span class="bar-icon">⏰</span>
+            <div>
+              <h3>Cuadrante Horario de Rotación: Grupos que Acuden y Docentes Acompañantes</h3>
+              <span class="bar-sub">Seguimiento por horas para 1º ESO y cierre en 6ª Hora para 2º ESO</span>
+            </div>
+          </div>
+          <span class="tag-status">3 Espacios Simultáneos</span>
+        </div>
+
+        <div class="table-responsive-wrapper">
+          <table class="schedule-table" id="table-schedule-jueves">
+            <thead>
+              <tr>
+                <th class="th-hour">Franja Horaria</th>
+                <th class="th-col-space col-biblioteca">
+                  <span class="space-title">🏛️ Biblioteca + Patio Central</span>
+                  <span class="space-manager">Encargado: <strong>José Fran</strong></span>
+                </th>
+                <th class="th-col-space col-salon">
+                  <span class="space-title">🎭 Salón de Actos</span>
+                  <span class="space-manager">Encargados: <strong>Raúl y Davinia</strong></span>
+                </th>
+                <th class="th-col-space col-gimnasio">
+                  <span class="space-title">🏃 Gimnasio</span>
+                  <span class="space-manager">Encargado: <strong>Migue</strong></span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 2ª Hora -->
+              <tr class="row-hour">
+                <td class="cell-time">
+                  <span class="hour-badge">2ª HORA</span>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-a">1º ESO A</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompaña:</span>
+                      <strong class="t-name">Marifé</strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-b">1º ESO B</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompaña:</span>
+                      <strong class="t-name">Sara</strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-c">1º ESO C</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompañan:</span>
+                      <strong class="t-name">Ángeles y Ana Teresa</strong>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 3ª Hora -->
+              <tr class="row-hour">
+                <td class="cell-time">
+                  <span class="hour-badge">3ª HORA</span>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-b">1º ESO B</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompaña:</span>
+                      <strong class="t-name">Ángeles</strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-a">1º ESO A</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompaña:</span>
+                      <strong class="t-name">Saro</strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-d">1º ESO D</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompaña:</span>
+                      <strong class="t-name">Sonia</strong>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 4ª Hora -->
+              <tr class="row-hour">
+                <td class="cell-time">
+                  <span class="hour-badge">4ª HORA</span>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-c">1º ESO C</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompaña:</span>
+                      <strong class="t-name">Juan Bosco</strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-d">1º ESO D</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompaña:</span>
+                      <strong class="t-name">Ciro</strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-a">1º ESO A</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompaña:</span>
+                      <strong class="t-name">Sara</strong>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 5ª Hora -->
+              <tr class="row-hour">
+                <td class="cell-time">
+                  <span class="hour-badge">5ª HORA</span>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-d">1º ESO D</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompaña:</span>
+                      <strong class="t-name">Ana Válido</strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-c">1º ESO C</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompaña:</span>
+                      <strong class="t-name">Sara</strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-b">1º ESO B</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompaña:</span>
+                      <strong class="t-name">Juan Bosco</strong>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 6ª Hora Especial -->
+              <tr class="row-hour special-row-6">
+                <td class="cell-time">
+                  <span class="hour-badge special-6-badge">6ª HORA</span>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card special-group-card">
+                    <span class="group-tag tag-mix">2º ESO A + C</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompañan:</span>
+                      <strong class="t-name">Miguel Ángel Artiles y Cristian</strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card special-group-card">
+                    <span class="group-tag tag-b">2º ESO B</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Acompaña:</span>
+                      <strong class="t-name">Silvia</strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-data empty-gym">
+                  <div class="note-box-dim">Espacio libre para desmontaje / preparación</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Callout Especial 6ª Hora para 1º ESO -->
+        <div class="highlight-special-event">
+          <div class="event-glow-icon">🌰✨</div>
+          <div class="event-details">
+            <h4>6ª HORA · DINÁMICA ESPECIAL DE FINADOS PARA TODO 1º ESO</h4>
+            <p><strong>Ubicación:</strong> Trasera de Talleres | <strong>Participantes:</strong> Todo el alumnado de 1º de ESO al unísono.</p>
+            <div class="event-tags-list">
+              <span class="event-tag">🧙‍♀️ "La Pócima" (Cadena de Recetas)</span>
+              <span class="event-tag">🌰 "La Gran Castañada" (Música y baile express)</span>
+            </div>
+            <p class="teachers-duty"><strong>Docentes acompañantes (clase en esta franja):</strong> Rosalva, Fernando, Sonia y Mari Pino.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN B: QUÉ SE HACE EN CADA ESPACIO (TALLERES Y ACCIONES) -->
+      <section class="workshops-block">
+        <div class="block-title-bar purple-theme-bar">
+          <div class="title-with-icon">
+            <span class="bar-icon">🎪</span>
+            <div>
+              <h3>Mapa de Espacios, Talleres y Acciones Impartidas (Jueves 29)</h3>
+              <span class="bar-sub">Docentes y grupos que imparten cada actividad</span>
+            </div>
+          </div>
+          <span class="tag-status">Talleres y Muestras</span>
+        </div>
+
+        <div class="spaces-grid-3">
+          
+          <!-- COLUMNA 1: BIBLIOTECA + PATIO CENTRAL -->
+          <div class="space-column col-biblio">
+            <div class="space-header">
+              <div class="space-icon">🏛️</div>
+              <div class="space-title-wrap">
+                <h4>Biblioteca + Patio Central</h4>
+                <span class="lead-teacher">Docente Encargado: <strong>José Fran</strong></span>
+              </div>
+            </div>
+
+            <div class="space-content-list">
+              <div class="activity-card biblio-act">
+                <span class="act-type-badge">📖 BIBLIOTECA</span>
+                <h5>Performance "Museo Vivo"</h5>
+                <ul class="act-meta">
+                  <li><strong>Docente:</strong> Irene</li>
+                  <li><strong>Alumnado:</strong> 2º de Bachillerato</li>
+                  <li><strong>Materia:</strong> Literatura Universal</li>
+                </ul>
+              </div>
+
+              <div class="activity-card patio-act">
+                <span class="act-type-badge">🛠️ TALLERES · PATIO CENTRAL</span>
+                <div class="sub-item">
+                  <h6>• Tarjetas Iluminadas</h6>
+                  <p>Alumnado: <strong>1º CFGB</strong> · Docente: <strong>Mónica Díaz</strong></p>
+                </div>
+                <div class="sub-item">
+                  <h6>• Spells, Witches and Magicians</h6>
+                  <p>Alumnado: <strong>1º y 2º ESO</strong> · Docentes: <strong>Dpto. de Inglés</strong></p>
+                </div>
+                <div class="sub-item">
+                  <h6>• Ciencia del Terror</h6>
+                  <p>Alumnado: <strong>2º ESO</strong> · Docentes: <strong>Dpto. Física y Química</strong></p>
+                </div>
+                <div class="sub-item">
+                  <h6>• Narraciones Orales</h6>
+                  <p>Alumnado: <strong>1º ESO B</strong> (Valores) · Docente: <strong>Ana Mata</strong></p>
+                </div>
+              </div>
+
+              <div class="activity-card hall-act">
+                <span class="act-type-badge">🎨 MUESTRAS · PATIO Y HALL</span>
+                <div class="sub-item">
+                  <h6>• Rincón de las Leyendas</h6>
+                  <p>Alumnado: <strong>2º ESO B y D</strong> · Docentes: <strong>Davinia, Monroy</strong> (Monográfico)</p>
+                </div>
+                <div class="sub-item">
+                  <h6>• Esquinas Temáticas</h6>
+                  <p>Alumnado: <strong>1º ESO</strong> · Docente: <strong>Sandra</strong></p>
+                </div>
+                <div class="sub-item">
+                  <h6>• Morir al Nacer</h6>
+                  <p>Alumnado: <strong>2º PDC</strong> · Docentes: <strong>Sergio y María Elena</strong></p>
+                </div>
+                <div class="sub-item">
+                  <h6>• La Brujería y el Inframundo en textos universales</h6>
+                  <p>Muestra temática de Literatura Universal</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUMNA 2: SALÓN DE ACTOS -->
+          <div class="space-column col-salon">
+            <div class="space-header">
+              <div class="space-icon">🎭</div>
+              <div class="space-title-wrap">
+                <h4>Salón de Actos</h4>
+                <span class="lead-teacher">Docentes Encargados: <strong>Raúl y Davinia</strong></span>
+              </div>
+            </div>
+
+            <div class="space-content-list">
+              <div class="activity-card theater-act">
+                <span class="act-type-badge">🎭 OBRA DE TEATRO</span>
+                <h5>"Las Voces que llamaron Brujas"</h5>
+                <ul class="act-meta">
+                  <li><strong>Alumnado:</strong> Aula Enclave y 2º ESO A</li>
+                  <li><strong>Docentes:</strong> Davinia, Raúl y Monroy</li>
+                </ul>
+              </div>
+
+              <div class="activity-card theater-act">
+                <span class="act-type-badge">🎭 OBRA DE TEATRO</span>
+                <h5>"El Caso de Telde"</h5>
+                <ul class="act-meta">
+                  <li><strong>Alumnado:</strong> 4º Expresión Artística</li>
+                  <li><strong>Docente:</strong> Raúl / Expresión Artística</li>
+                </ul>
+              </div>
+
+              <div class="activity-card film-act">
+                <span class="act-type-badge">🎬 CINE Y AUDIOVISUAL</span>
+                <h5>Concurso de Cortometrajes</h5>
+                <ul class="act-meta">
+                  <li><strong>Alumnado:</strong> 4º Monográfico</li>
+                  <li><strong>Docentes:</strong> Irene, Davinia y José Fran</li>
+                </ul>
+              </div>
+
+              <div class="activity-card horror-act">
+                <span class="act-type-badge">🏚️ EXPERIENCIA TERROR</span>
+                <h5>Casa del Terror</h5>
+                <ul class="act-meta">
+                  <li><strong>Alumnado:</strong> 2º ESO C</li>
+                  <li><strong>Docentes:</strong> Davinia y Monroy</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- COLUMNA 3: GIMNASIO -->
+          <div class="space-column col-gym">
+            <div class="space-header">
+              <div class="space-icon">🏃</div>
+              <div class="space-title-wrap">
+                <h4>Gimnasio</h4>
+                <span class="lead-teacher">Docente Encargado: <strong>Migue</strong></span>
+              </div>
+            </div>
+
+            <div class="space-content-list">
+              <div class="activity-card escape-act">
+                <span class="act-type-badge">🔐 ESCAPE ROOM TEMÁTICO</span>
+                <h5>Escape Room: "Leyendas Canarias"</h5>
+                <p class="desc-text">Inmersión interactiva basada en el folclore y misterios del archipiélago canario (Luz de Mafasca, brujas de Telde, apariciones y enigmas).</p>
+                <ul class="act-meta">
+                  <li><strong>Docente responsable:</strong> Migue</li>
+                  <li><strong>Alumnado actor/guía:</strong> 1º de ESO</li>
+                </ul>
+              </div>
+
+              <div class="tip-canary-box">
+                <div class="tip-icon">✨</div>
+                <div>
+                  <strong>Tradición Canaria:</strong> Espacio especialmente ambientado para rescatar los relatos orales de finados y misterios de las islas.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECCIÓN EXCLUSIVA DEL JUEVES: GUÍA DE DINÁMICAS (LA PÓCIMA Y LA GRAN CASTAÑADA) -->
+      <section class="game-rules-section">
+        <div class="rules-header">
+          <span class="rules-icon">📜</span>
+          <div>
+            <h3>Guía de Dinámicas de Patio: ¿En qué consisten?</h3>
+            <p>Instrucciones de las actividades colectivas de 6ª Hora para 1º de ESO.</p>
+          </div>
+        </div>
+
+        <div class="rules-grid">
+          <div class="rule-box">
+            <div class="rule-title-line">
+              <span class="rule-badge">🧙‍♀️ Dinámica 1</span>
+              <h4>La Pócima</h4>
+            </div>
+            <p class="rule-summary">
+              Nos ponemos todos sentados en el patio en fila, uno al lado del otro, con un docente en cada extremo. El docente plantea una receta al primer alumno, quien añade una palabra a ese recital y lo encadena hacia el siguiente compañero. Cuando la cadena llega al centro del patio, ¡se anuncian en voz alta los dos recitales mágicos completados!
+            </p>
+          </div>
+
+          <div class="rule-box">
+            <div class="rule-title-line">
+              <span class="rule-badge rule-orange">🌰 Dinámica 2</span>
+              <h4>La Gran Castañada</h4>
+            </div>
+            <p class="rule-summary">
+              Con música en marcha, van pasando globos gigantes entre todo el alumnado y docentes. En el momento en que la música queda en silencio, quien tenga el globo en sus manos debe realizar un baile express o dar un divertido susto de inframundo. Al finalizar la dinámica, ¡nos ponemos todos en pie para bailar un tema conjunto!
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- VISTA 3: VIERNES 30 DE OCTUBRE -->
+    <main id="view-viernes" class="view-section" style="display:none;">
+      <div class="day-view-header viernes-border">
+        <div class="day-info-bar">
+          <div class="day-badge-pill viernes-badge">VIERNES 30 DE OCTUBRE 2026</div>
+          <div class="nav-switch-actions">
+            <button class="switch-day-link" onclick="switchView('jueves', true)">← Ir a Jueves 29</button>
+            <button class="back-link-btn" onclick="switchView('home', true)">🏠 Volver al inicio</button>
+          </div>
+        </div>
+        <h2>Jornada de Talleres (2º ESO), Gran Castañada del AMPA y Concurso</h2>
+        <p class="section-intro">El <strong>viernes 30</strong> se concentra la visita de <strong>2º de ESO</strong> durante la 2ª y 3ª hora, seguido del <strong>gran evento del recreo</strong> organizado con el AMPA Los Tabaibales.</p>
+
+        <!-- Filtro Rápido para encontrar tu grupo / profesor en viernes -->
+        <div class="search-filter-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="filter-viernes" class="filter-input" placeholder="Buscar grupo o profesor (ej. 2º ESO D, Silvia, Fernando, AMPA...)" onkeyup="filterContent('viernes')">
+          <button class="clear-search-btn" onclick="clearFilter('viernes')">Limpiar</button>
+        </div>
+      </div>
+
+      <!-- SECCIÓN A: CUADRANTE HORARIO VIERNES -->
+      <section class="schedule-block">
+        <div class="block-title-bar green-theme-bar">
+          <div class="title-with-icon">
+            <span class="bar-icon">⏰</span>
+            <div>
+              <h3>Cuadrante Horario de Visitas: Grupos que Acuden y Acompañantes</h3>
+              <span class="bar-sub">Atención especial para 2º de ESO y evento general en el Recreo</span>
+            </div>
+          </div>
+          <span class="tag-status">Viernes 30 Octubre</span>
+        </div>
+
+        <div class="table-responsive-wrapper">
+          <table class="schedule-table" id="table-schedule-viernes">
+            <thead>
+              <tr>
+                <th class="th-hour">Franja Horaria</th>
+                <th class="th-col-space col-biblioteca">
+                  <span class="space-title">🏛️ Biblioteca + Patio Central</span>
+                  <span class="space-manager">Docente Encargado: <strong>José Fran</strong></span>
+                </th>
+                <th class="th-col-space col-salon">
+                  <span class="space-title">🎭 Salón de Actos</span>
+                  <span class="space-manager">Docentes Encargados: <strong>Raúl y Davinia</strong></span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 2ª Hora -->
+              <tr class="row-hour">
+                <td class="cell-time">
+                  <span class="hour-badge">2ª HORA</span>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-b">2º ESO B</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Docente Acompañante:</span>
+                      <strong class="t-name">Silvia</strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-d">2º ESO D</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Docente Acompañante:</span>
+                      <strong class="t-name">Ana Válido</strong>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- 3ª Hora -->
+              <tr class="row-hour">
+                <td class="cell-time">
+                  <span class="hour-badge">3ª HORA</span>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-d">2º ESO D</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Docente Acompañante:</span>
+                      <strong class="t-name">Fernando</strong>
+                    </div>
+                  </div>
+                </td>
+                <td class="cell-data">
+                  <div class="visit-card">
+                    <span class="group-tag tag-mix">2º ESO A + C</span>
+                    <div class="teacher-info">
+                      <span class="t-label">Docentes Acompañantes:</span>
+                      <strong class="t-name">Ana Válido, Sandra, Cristian y Paula</strong>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- RECREO - GRAN EVENTO -->
+              <tr class="row-hour recreation-highlight-row">
+                <td class="cell-time">
+                  <span class="hour-badge recreo-badge">🎉 RECREO</span>
+                  <span class="recreo-sublabel">Comunidad Educativa</span>
+                </td>
+                <td colspan="2" class="cell-data-full">
+                  <div class="recreo-banner-card">
+                    <div class="recreo-title">
+                      <span class="flame-icon">🔥🌰</span>
+                      <h4>ASADERO DE CASTAÑAS Y GRAN RECREO TEMÁTICO</h4>
+                    </div>
+                    <div class="recreo-points-grid">
+                      <div class="recreo-point">
+                        <span class="pt-icon">🌰</span>
+                        <div>
+                          <strong>Asadero Tradicional de Castañas</strong>
+                          <p>Dinamización con música canaria y ambiente festivo por el <strong>AMPA IES Santa Lucía "Los Tabaibales"</strong>.</p>
+                        </div>
+                      </div>
+                      <div class="recreo-point">
+                        <span class="pt-icon">📸</span>
+                        <div>
+                          <strong>Photocall del Inframundo</strong>
+                          <p>Punto fotográfico con atrezo para fotos individuales, parejas y grupos.</p>
+                        </div>
+                      </div>
+                      <div class="recreo-point">
+                        <span class="pt-icon">🏆</span>
+                        <div>
+                          <strong>Gran Concurso de Disfraces</strong>
+                          <p>Para alumnado y profesorado (categorías: individual, colectivo y departamentos docentes).</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- SECCIÓN B: QUÉ SE HACE EL VIERNES EN CADA ESPACIO -->
+      <section class="workshops-block">
+        <div class="block-title-bar orange-theme-bar">
+          <div class="title-with-icon">
+            <span class="bar-icon">🎪</span>
+            <div>
+              <h3>Muestras, Talleres y Acciones Impartidas (Viernes 30)</h3>
+              <span class="bar-sub">Docentes y grupos que dinamizan las actividades</span>
+            </div>
+          </div>
+          <span class="tag-status">Viernes Activo</span>
+        </div>
+
+        <div class="spaces-grid-2">
+          
+          <!-- PATIO CENTRAL -->
+          <div class="space-column col-patio">
+            <div class="space-header">
+              <div class="space-icon">🏛️</div>
+              <div class="space-title-wrap">
+                <h4>Patio Central</h4>
+                <span class="lead-teacher">Docente Encargado: <strong>José Fran</strong></span>
+              </div>
+            </div>
+
+            <div class="space-content-list">
+              <div class="activity-card patio-act">
+                <span class="act-type-badge">🛠️ TALLERES</span>
+                <div class="sub-item">
+                  <h6>• Tarjetas Iluminadas</h6>
+                  <p>Alumnado: <strong>1º CFGB</strong> · Docente: <strong>Mónica Díaz</strong></p>
+                </div>
+                <div class="sub-item">
+                  <h6>• Ciencia del Terror</h6>
+                  <p>Alumnado: <strong>2º ESO</strong> · Docentes: <strong>Dpto. de Física y Química</strong></p>
+                </div>
+              </div>
+
+              <div class="activity-card hall-act">
+                <span class="act-type-badge">🎨 MUESTRAS · PATIO Y HALL</span>
+                <div class="sub-item">
+                  <h6>• Rincón de las Leyendas</h6>
+                  <p>Alumnado: <strong>2º ESO B y D</strong> · Docentes: <strong>Davinia y Monroy</strong> (Materia: Monográfico)</p>
+                </div>
+                <div class="sub-item">
+                  <h6>• Esquinas Temáticas</h6>
+                  <p>Alumnado: <strong>1º ESO</strong> · Docente: <strong>Sandra</strong></p>
+                </div>
+                <div class="sub-item">
+                  <h6>• Morir al Nacer</h6>
+                  <p>Alumnado: <strong>2º PDC</strong> · Docentes: <strong>Sergio y María Elena</strong></p>
+                </div>
+                <div class="sub-item">
+                  <h6>• La Brujería y el Inframundo en los textos de Literatura Universal</h6>
+                  <p>Paneles y exposiciones temáticas</p>
+                </div>
+                <div class="sub-item">
+                  <h6>• Narraciones Orales</h6>
+                  <p>Alumnado: <strong>1º ESO B</strong> (Materia de Valores) · Docente: <strong>Ana Mata</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SALÓN DE ACTOS -->
+          <div class="space-column col-salon">
+            <div class="space-header">
+              <div class="space-icon">🎭</div>
+              <div class="space-title-wrap">
+                <h4>Salón de Actos</h4>
+                <span class="lead-teacher">Docentes Encargados: <strong>Raúl y Davinia</strong></span>
+              </div>
+            </div>
+
+            <div class="space-content-list">
+              <div class="activity-card theater-act">
+                <span class="act-type-badge">🎭 OBRA DE TEATRO</span>
+                <h5>"Las Voces que llamaron Brujas"</h5>
+                <ul class="act-meta">
+                  <li><strong>Alumnado:</strong> Aula Enclave y 2º ESO A</li>
+                  <li><strong>Docentes:</strong> Davinia, Raúl y Monroy</li>
+                </ul>
+              </div>
+
+              <div class="activity-card theater-act">
+                <span class="act-type-badge">🎭 OBRA DE TEATRO</span>
+                <h5>"El Caso de Telde"</h5>
+                <ul class="act-meta">
+                  <li><strong>Alumnado:</strong> 4º Expresión Artística</li>
+                  <li><strong>Docente:</strong> José Fran</li>
+                </ul>
+              </div>
+
+              <div class="activity-card film-act">
+                <span class="act-type-badge">🎬 CONCURSO CORTOMETRAJES</span>
+                <h5>4º Monográfico</h5>
+                <ul class="act-meta">
+                  <li><strong>Docentes:</strong> Irene, Davinia y José Fran</li>
+                </ul>
+              </div>
+
+              <div class="activity-card horror-act">
+                <span class="act-type-badge">🏚️ CASA DEL TERROR</span>
+                <h5>2º ESO C</h5>
+                <ul class="act-meta">
+                  <li><strong>Docentes:</strong> Davinia y Monroy</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER ACTUALIZADO -->
+    <footer class="main-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <strong>IES Santa Lucía · Red InnovAS - DAC</strong>
+          <p>Jornada de Finados y Halloween · Curso Escolar 2026 / 2027</p>
+        </div>
+        <div class="footer-right">
+          <button class="footer-back-btn" onclick="switchView('home', true)">🏠 Portada</button>
+          <button class="scroll-top-btn" onclick="window.scrollTo({top:0, behavior:'smooth'})">⬆ Subir</button>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
