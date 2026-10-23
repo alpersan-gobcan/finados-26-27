@@ -2,14 +2,14 @@
    INTERACCIÓN Y DINAMISMO: FINADOS & HALLOWEEN IES SANTA LUCÍA
    ========================================================================== */
 
-// 1. Partículas flotantes temáticas sutiles
-const ICONS = ['🌰', '🧙‍♀️', '🎃', '🦇', '🕯️', '✨', '🍂', '🍁', '👻'];
+// 1. Partículas flotantes temáticas
+const ICONS = ['🌰', '🧙‍♀️', '🎃', '🦇', '🕯️', '✨', '🍂', '🍁', '💀', '🕷️'];
 
 function initAmbientParticles() {
   const container = document.getElementById('ambient-particles');
   if (!container) return;
 
-  const count = 18;
+  const count = 20;
   for (let i = 0; i < count; i++) {
     createParticle(container, i * (18 / count));
   }
@@ -32,28 +32,29 @@ function createParticle(container, delaySeconds) {
   container.appendChild(el);
 }
 
-// 2. Control de cambio de vistas con cortina de transición terrorífica
+// 2. Control de cambio de vistas con cortina de transición siniestra (más tiempo y terrorífica)
 function switchView(viewName, withTransition = false) {
   const curtain = document.getElementById('transition-curtain');
   const curtainText = document.getElementById('curtain-text');
 
   if (withTransition && curtain) {
     if (viewName === 'jueves') {
-      curtainText.innerText = "Abriendo el Cuadrante del Jueves... 🧙‍♀️";
+      curtainText.innerText = "¡CONJURANDO EL CUADRANTE DEL JUEVES! 🧙‍♀️";
     } else if (viewName === 'viernes') {
-      curtainText.innerText = "Entrando a la Gran Fiesta del Viernes... 🎃";
+      curtainText.innerText = "¡ABRIENDO LAS CRIPTAS DEL VIERNES! ⚰️";
     } else {
-      curtainText.innerText = "Regresando a la Portada... 🏚️";
+      curtainText.innerText = "REGRESANDO DE LAS SOMBRAS... 🏚️";
     }
 
     curtain.classList.add('active');
 
+    // Duración de transición aumentada a 1.2 segundos para que se sienta el suspenso
     setTimeout(() => {
       executeViewSwitch(viewName);
       setTimeout(() => {
         curtain.classList.remove('active');
-      }, 400);
-    }, 450);
+      }, 600);
+    }, 1100);
   } else {
     executeViewSwitch(viewName);
   }
@@ -93,16 +94,16 @@ function executeViewSwitch(viewName) {
 // 3. Efectos interactivos al pulsar botones de días
 function triggerSpookyPoof(day) {
   if (typeof confetti === 'function') {
-    let colors = ['#ea580c', '#78350f', '#f59e0b', '#9333ea'];
+    let colors = ['#dc2626', '#78350f', '#ea580c', '#000000'];
     if (day === 'jueves') {
-      colors = ['#2563eb', '#3b82f6', '#ea580c', '#f59e0b'];
+      colors = ['#1d4ed8', '#3b82f6', '#ea580c', '#dc2626'];
     } else if (day === 'viernes') {
-      colors = ['#ea580c', '#c2410c', '#78350f', '#16a34a'];
+      colors = ['#ea580c', '#dc2626', '#78350f', '#15803d'];
     }
 
     confetti({
-      particleCount: 35,
-      spread: 70,
+      particleCount: 40,
+      spread: 75,
       origin: { y: 0.25 },
       colors: colors,
       disableForReducedMotion: true
@@ -152,28 +153,28 @@ function clearFilter(day) {
   }
 }
 
-// 5. Animación terrorífica inicial y carga de vista
+// 5. Animación terrorífica inicial con mayor duración y tensión (4 segundos)
 window.addEventListener('DOMContentLoaded', () => {
   initAmbientParticles();
 
   const overlay = document.getElementById('spooky-intro-overlay');
 
-  // Desvanecer la pantalla terrorífica después de 2.2 segundos para revelar la portada
+  // Mantenemos la pantalla oscura de inframundo durante 3.8 segundos para dar impacto
   setTimeout(() => {
     if (overlay) {
       overlay.classList.add('fade-out');
     }
 
-    // Efecto de bienvenida
+    // Efecto de bienvenida al descubrir la web
     if (typeof confetti === 'function') {
       confetti({
-        particleCount: 30,
-        spread: 60,
+        particleCount: 35,
+        spread: 65,
         origin: { y: 0.2 },
-        colors: ['#ea580c', '#b45309', '#fef08a']
+        colors: ['#ea580c', '#b45309', '#dc2626']
       });
     }
-  }, 2200);
+  }, 3800);
 
   // Detectar hash
   const hash = window.location.hash.replace('#', '');

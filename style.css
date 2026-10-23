@@ -44,6 +44,7 @@
   --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Playfair Display', Georgia, serif;
   --font-spooky: 'Creepster', cursive;
+  --font-blood: 'Nosifer', cursive;
 }
 
 /* Reset y caja base */
@@ -64,21 +65,22 @@ body {
 }
 
 /* ==========================================================================
-   PANTALLA INTRODUCCIÓN TERRORÍFICA (OVERLAY)
+   PANTALLA INTRODUCCIÓN TERRORÍFICA INTENSA (MÁS TIEMPO Y MÁS MIEDO)
    ========================================================================== */
 .spooky-overlay {
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: radial-gradient(circle at center, #1e130b 0%, #0c0805 100%);
+  background: radial-gradient(circle at center, #180905 0%, #080302 65%, #000000 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 1.2s;
   color: #fff;
   text-align: center;
   padding: 1.5rem;
+  overflow: hidden;
 }
 
 .spooky-overlay.fade-out {
@@ -87,85 +89,193 @@ body {
   pointer-events: none;
 }
 
+/* Efecto Relámpago siniestro */
+.lightning-flash {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  pointer-events: none;
+  animation: flashLightning 4.5s infinite;
+}
+
+@keyframes flashLightning {
+  0%, 88%, 92%, 100% { opacity: 0; }
+  89% { opacity: 0.85; }
+  90% { opacity: 0.1; }
+  91% { opacity: 0.95; }
+}
+
 .intro-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   z-index: 2;
-  animation: floatSpooky 3s ease-in-out infinite;
+  animation: shakeHorror 5s ease-in-out infinite;
 }
 
-@keyframes floatSpooky {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+@keyframes shakeHorror {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(-1.5deg); }
+  75% { transform: translateY(8px) rotate(1.5deg); }
+  89% { transform: translate(-4px, 4px) rotate(-3deg); }
+  91% { transform: translate(5px, -3px) rotate(3deg); }
 }
 
-.intro-icon-ghost {
-  font-size: 5rem;
-  line-height: 1;
-  filter: drop-shadow(0 0 25px rgba(234, 88, 12, 0.6));
-  animation: pulseGlow 2s infinite alternate;
-}
-
-@keyframes pulseGlow {
-  0% { transform: scale(0.95); filter: drop-shadow(0 0 15px rgba(234, 88, 12, 0.5)); }
-  100% { transform: scale(1.08); filter: drop-shadow(0 0 35px rgba(245, 158, 11, 0.85)); }
-}
-
-.intro-title {
-  font-family: var(--font-spooky);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  color: #ea580c;
-  letter-spacing: 2px;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 20px rgba(234, 88, 12, 0.7);
-}
-
-.intro-sub {
-  font-size: 1.15rem;
-  color: #fed7aa;
-  font-weight: 600;
-  letter-spacing: 1px;
-  margin-bottom: 1.5rem;
-}
-
-.intro-cauldron {
-  font-size: 2.75rem;
+/* Calavera tenebrosa con pulsación de sangre */
+.skull-container {
   position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.creepy-skull {
+  font-size: 6.2rem;
+  display: inline-block;
+  filter: drop-shadow(0 0 35px #dc2626) drop-shadow(0 0 15px #ea580c);
+  animation: skullPulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes skullPulse {
+  0% {
+    transform: scale(0.92);
+    filter: drop-shadow(0 0 25px rgba(220, 38, 38, 0.6));
+  }
+  100% {
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 60px rgba(239, 68, 68, 0.95)) drop-shadow(0 0 30px #ea580c);
+  }
+}
+
+/* Ojos rojos brillantes parpadeantes */
+.intro-eyes-spooky {
+  display: flex;
+  gap: 3.5rem;
+  margin-top: -1.8rem;
+  margin-bottom: 1.25rem;
+}
+
+.red-eye {
+  width: 18px;
+  height: 18px;
+  background: #ff0000;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #ff0000, 0 0 35px #ff2222, 0 0 50px #ff0000;
+  animation: eyeBlink 3.2s infinite;
+}
+
+@keyframes eyeBlink {
+  0%, 42%, 46%, 100% { transform: scaleY(1); opacity: 1; }
+  44% { transform: scaleY(0.08); opacity: 0.2; }
+}
+
+.blood-text {
+  font-family: var(--font-spooky);
+  font-size: clamp(2.3rem, 6vw, 4.2rem);
+  color: #ff3333;
+  letter-spacing: 4px;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 4px 10px rgba(0, 0, 0, 0.9);
+  line-height: 1.1;
+}
+
+.demonic-sub {
+  font-size: 1.25rem;
+  color: #fdba74;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  max-width: 680px;
+  margin-bottom: 1.75rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+}
+
+.ritual-circle {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  font-size: 2.2rem;
+}
+
+.candle-flame {
+  font-size: 2.6rem;
+  animation: flickerCandle 0.4s infinite alternate;
+}
+
+@keyframes flickerCandle {
+  0% { transform: scale(0.95) rotate(-2deg); opacity: 0.85; }
+  100% { transform: scale(1.1) rotate(2deg); opacity: 1; }
+}
+
+.ritual-symbol {
+  letter-spacing: 12px;
+  filter: drop-shadow(0 0 12px rgba(234, 88, 12, 0.7));
+}
+
+.spooky-warning-box {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: rgba(185, 28, 28, 0.25);
+  border: 1px solid #b91c1c;
+  padding: 0.45rem 1.4rem;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #fca5a5;
   margin-bottom: 1.5rem;
 }
 
 .intro-hint {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: #a8a29e;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  animation: blinkHint 1.2s infinite;
+  animation: scaryPulseText 1.5s infinite;
 }
 
-@keyframes blinkHint {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
+@keyframes scaryPulseText {
+  0%, 100% { opacity: 0.35; color: #78716c; }
+  50% { opacity: 1; color: #ef4444; }
 }
 
 /* ==========================================================================
-   CORTINA DE TRANSICIÓN ENTRE DÍAS
+   CORTINA DE TRANSICIÓN ENTRE DÍAS MÁS IMPACTANTE
    ========================================================================== */
 .transition-curtain {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(26, 16, 8, 0.94);
-  backdrop-filter: blur(8px);
+  background: radial-gradient(circle at center, #260c07 0%, #0f0402 70%, #000000 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.35s ease, visibility 0.35s ease;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
   pointer-events: none;
+  overflow: hidden;
+}
+
+.lightning-flash-curtain {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.transition-curtain.active .lightning-flash-curtain {
+  animation: flashOnce 0.6s ease;
+}
+
+@keyframes flashOnce {
+  0% { opacity: 0; }
+  30% { opacity: 0.9; }
+  45% { opacity: 0.1; }
+  60% { opacity: 0.95; }
+  100% { opacity: 0; }
 }
 
 .transition-curtain.active {
@@ -178,26 +288,36 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
   color: #fff;
+  text-align: center;
+  padding: 1.5rem;
 }
 
-.curtain-icon {
-  font-size: 4rem;
-  animation: spinWiggle 0.6s infinite alternate;
+.curtain-beast {
+  font-size: 5.5rem;
+  filter: drop-shadow(0 0 30px #ea580c);
+  animation: demonLurk 0.8s ease-in-out infinite alternate;
 }
 
-@keyframes spinWiggle {
-  0% { transform: scale(0.9) rotate(-10deg); }
-  100% { transform: scale(1.1) rotate(10deg); }
+@keyframes demonLurk {
+  0% { transform: scale(0.9) translateY(0); filter: drop-shadow(0 0 20px #dc2626); }
+  100% { transform: scale(1.15) translateY(-8px); filter: drop-shadow(0 0 45px #f97316); }
 }
 
 .curtain-text {
   font-family: var(--font-spooky);
-  font-size: 2rem;
-  letter-spacing: 2px;
-  color: #f97316;
-  text-shadow: 0 0 15px rgba(249, 115, 22, 0.6);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  letter-spacing: 3px;
+  color: #ef4444;
+  text-shadow: 0 0 25px rgba(239, 68, 68, 0.85);
+}
+
+.curtain-subtext {
+  font-size: 1.05rem;
+  color: #fed7aa;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 /* Partículas ambientales decorativas flotando suavemente */
@@ -311,7 +431,7 @@ body {
 .sub-school {
   font-weight: 800;
   font-size: 0.95rem;
-  color: #1e3a8a; /* Azul institucional */
+  color: #1e3a8a;
   letter-spacing: -0.01em;
 }
 
@@ -865,7 +985,6 @@ body {
   vertical-align: middle;
 }
 
-/* Colores de filas alternadas para máxima legibilidad a golpe de vista */
 .schedule-table tbody tr:nth-child(even) {
   background-color: #faf8f5;
 }
@@ -907,7 +1026,6 @@ body {
   margin-top: 4px;
 }
 
-/* Tarjeta individual de visita dentro de la celda */
 .visit-card {
   display: flex;
   align-items: center;
@@ -925,7 +1043,6 @@ body {
   background: #fffbeb;
 }
 
-/* Etiquetas identificativas por grupo con colores llamativos */
 .group-tag {
   display: inline-block;
   font-size: 0.85rem;
@@ -973,7 +1090,6 @@ body {
   text-align: center;
 }
 
-/* Callout Especial 6ª Hora */
 .highlight-special-event {
   display: flex;
   gap: 1.25rem;
@@ -1023,7 +1139,6 @@ body {
   color: #78350f !important;
 }
 
-/* Fila Especial de Recreo */
 .recreation-highlight-row {
   background: #fff7ed !important;
 }

@@ -7,7 +7,7 @@
   <meta name="description" content="Cuadrante interactivo oficial de actividades, talleres, espacios y acompañamiento docente en el IES Santa Lucía.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </head>
@@ -15,30 +15,48 @@
 
   <!-- PANTALLA INTRO / ANIMACIÓN TERRORÍFICA DE ENTRADA -->
   <div id="spooky-intro-overlay" class="spooky-overlay">
+    <!-- Efecto relámpago que ilumina la oscuridad -->
+    <div class="lightning-flash"></div>
     <div class="intro-fog"></div>
+    
     <div class="intro-content">
-      <div class="intro-icon-ghost">👻</div>
-      <div class="intro-eye-glow">
-        <span class="eye left-eye"></span>
-        <span class="eye right-eye"></span>
+      <!-- Cráneo siniestro y garras -->
+      <div class="skull-container">
+        <span class="creepy-skull">💀</span>
+        <div class="blood-tears"></div>
       </div>
-      <h2 class="intro-title">¿Te atreves a entrar en el Inframundo?</h2>
-      <p class="intro-sub">IES Santa Lucía · Finados & Halloween 26/27</p>
-      <div class="intro-cauldron">
-        <span class="bubble b1"></span>
-        <span class="bubble b2"></span>
-        <span class="bubble b3"></span>
-        <span class="cauldron-emoji">🧙‍♀️⚗️</span>
+      
+      <div class="intro-eyes-spooky">
+        <span class="red-eye left-eye"></span>
+        <span class="red-eye right-eye"></span>
       </div>
-      <span class="intro-hint">Abriendo las puertas del conocimiento...</span>
+
+      <h2 class="intro-title blood-text">¡EL INFRAMUNDO HA DESPERTADO!</h2>
+      <p class="intro-sub demonic-sub">Las ánimas de Finados y las sombras de la noche te reclaman...</p>
+
+      <div class="ritual-circle">
+        <span class="candle-flame">🕯️</span>
+        <span class="ritual-symbol">⚰️ 🩸 🕷️ 🦇</span>
+        <span class="candle-flame">🕯️</span>
+      </div>
+
+      <div class="spooky-warning-box">
+        <span class="skull-mini">⚠️</span>
+        <span>IES SANTA LUCÍA · JORNADA 26/27</span>
+        <span class="skull-mini">⚠️</span>
+      </div>
+
+      <span class="intro-hint">Abriendo las criptas del conocimiento... no mires atrás</span>
     </div>
   </div>
 
-  <!-- Cortina de transición entre días -->
+  <!-- Cortina de transición entre días más oscura e impactante -->
   <div id="transition-curtain" class="transition-curtain">
+    <div class="lightning-flash-curtain"></div>
     <div class="curtain-message">
-      <span class="curtain-icon">🎃</span>
-      <span id="curtain-text" class="curtain-text">Cambiando de dimensión...</span>
+      <div class="curtain-beast">👹</div>
+      <span id="curtain-text" class="curtain-text">Cruzando el portal espectral...</span>
+      <span class="curtain-subtext">Las ánimas están reorganizando las horas...</span>
     </div>
   </div>
 
