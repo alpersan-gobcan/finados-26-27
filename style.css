@@ -1723,37 +1723,6 @@ body {
   line-height: 1;
 }
 
-/* ==========================================================================
-   ANIMACIÓN: LLUVIA DE ARAÑAS, BRUJAS Y MURCIÉLAGOS
-   ========================================================================== */
-.falling-creature {
-  position: fixed;
-  z-index: 100000;
-  pointer-events: none;
-  user-select: none;
-  animation: fallDownSwarm linear forwards;
-}
 
-@keyframes fallDownSwarm {
-  0% {
-    transform: translateY(0) rotate(0deg) scale(0.7);
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.95;
-    transform: translateY(15vh) rotate(25deg) scale(1.1);
-  }
-  50% {
-    transform: translateY(50vh) rotate(-35deg) scale(0.9);
-  }
-  85% {
-    opacity: 0.9;
-    transform: translateY(85vh) rotate(45deg) scale(1.2);
-  }
-  100% {
-    transform: translateY(105vh) rotate(-15deg) scale(0.8);
-    opacity: 0;
-  }
-}
 
 

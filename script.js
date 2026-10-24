@@ -53,13 +53,10 @@ function switchView(viewName, withTransition = false) {
       executeViewSwitch(viewName);
       setTimeout(() => {
         curtain.classList.remove('active');
-        // Lanzar lluvia de criaturas justo al descubrirse la página
-        spawnSpookySwarm(viewName);
       }, 500);
     }, 4000);
   } else {
     executeViewSwitch(viewName);
-    spawnSpookySwarm(viewName);
   }
 }
 
@@ -89,73 +86,6 @@ function executeViewSwitch(viewName) {
 
   // Guardar hash en URL
   history.replaceState(null, null, `#${viewName}`);
-}
-
-// 3. Lluvia de Arañas, Brujas, Murciélagos y Calaveras (garantizada por Canvas Confetti Emoji Shapes)
-function spawnSpookySwarm(day) {
-  const spookyEmojis = ['🕷️', '🦇', '🧙‍♀️', '💀', '🎃', '👻'];
-
-  if (typeof confetti === 'function') {
-    try {
-      const spookyShapes = spookyEmojis.map(emoji => confetti.shapeFromText({ text: emoji, scalar: 3.2 }));
-      
-      // Primera ráfaga desde arriba centro-izquierda
-      confetti({
-        shapes: spookyShapes,
-        scalar: 3.2,
-        particleCount: 25,
-        spread: 90,
-        origin: { y: -0.1, x: 0.35 },
-        startVelocity: 15,
-        gravity: 0.8,
-        ticks: 250,
-        disableForReducedMotion: true
-      });
-
-      // Segunda ráfaga desde arriba centro-derecha para cubrir toda la pantalla
-      setTimeout(() => {
-        confetti({
-          shapes: spookyShapes,
-          scalar: 3.2,
-          particleCount: 25,
-          spread: 90,
-          origin: { y: -0.1, x: 0.65 },
-          startVelocity: 15,
-          gravity: 0.8,
-          ticks: 250,
-          disableForReducedMotion: true
-        });
-      }, 150);
-      return;
-    } catch (e) {
-      console.warn("Fallo confetti text shape, usando fallback DOM", e);
-    }
-  }
-
-  // Fallback DOM
-  const count = 35;
-  for (let i = 0; i < count; i++) {
-    const creature = document.createElement('div');
-    creature.className = 'falling-creature';
-    creature.innerText = spookyEmojis[Math.floor(Math.random() * spookyEmojis.length)];
-    
-    const startX = Math.random() * 95;
-    const duration = 2.4 + Math.random() * 2;
-    const delay = Math.random() * 0.8;
-    const size = 1.6 + Math.random() * 1.5;
-
-    creature.style.left = `${startX}vw`;
-    creature.style.top = '-60px';
-    creature.style.fontSize = `${size}rem`;
-    creature.style.animationDuration = `${duration}s`;
-    creature.style.animationDelay = `${delay}s`;
-
-    document.body.appendChild(creature);
-
-    setTimeout(() => {
-      creature.remove();
-    }, (duration + delay + 0.5) * 1000);
-  }
 }
 
 // 4. Filtro con Desplegables en tiempo real (Docente y Curso)
@@ -228,9 +158,6 @@ window.addEventListener('DOMContentLoaded', () => {
     if (overlay) {
       overlay.classList.add('fade-out');
     }
-
-    // Lluvia de arañas y murciélagos al descubrir la web
-    spawnSpookySwarm('home');
   }, 4000);
 
   // Detectar hash
